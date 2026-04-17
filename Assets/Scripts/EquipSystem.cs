@@ -6,11 +6,14 @@ public class EquipSystem : MonoBehaviour
     
     public static EquipSystem Instance { get; set; }
 
+    public GameObject weaponHolder;
+
     public GameObject equipScreenUI;
     public List<GameObject> slotList = new List<GameObject>();
     public List<string> itemList;
 
     private int equippedSlot = -1;
+    public GameObject equippedItem = null;
 
     private void Awake()
     {
@@ -78,7 +81,8 @@ public class EquipSystem : MonoBehaviour
             quickSlot.SetQuickSlotIndexColor(Color.white);
             InventoryItem item = quickSlot.transform.GetChild(0).GetComponent<InventoryItem>();
             item.SetIsEquipped(true);
-
+            equippedItem = Instantiate(Resources.Load<GameObject>("Models/" + item.itemName), new Vector3(1.7f, 0.3f, 2f), Quaternion.Euler(20f, -20f, -10f));
+            equippedItem.transform.SetParent(weaponHolder.transform, false);
         }
     }
 
@@ -92,6 +96,8 @@ public class EquipSystem : MonoBehaviour
             InventoryItem item = quickSlot.transform.GetChild(0).GetComponent<InventoryItem>();
             item.SetIsEquipped(false);
             equippedSlot = -1;
+            Destroy(equippedItem);
+            equippedItem = null;
         }
     }
 

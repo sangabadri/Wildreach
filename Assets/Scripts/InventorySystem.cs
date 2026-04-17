@@ -136,7 +136,7 @@ public class InventorySystem : MonoBehaviour
         }
         else
         {
-            GameObject item = Instantiate(Resources.Load<GameObject>(itemName), emptySlot.transform.position, emptySlot.transform.rotation);
+            GameObject item = Instantiate(Resources.Load<GameObject>("Icons/" + itemName), emptySlot.transform.position, emptySlot.transform.rotation);
             TriggerPickupAlert(true, itemName, item.GetComponent<Image>().sprite);
         
             item.transform.SetParent(emptySlot.transform);
