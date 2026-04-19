@@ -35,10 +35,6 @@ public class MouseMovement : MonoBehaviour
             //applying both rotations
             transform.parent.rotation = Quaternion.Euler(0f, YRotation, 0f);
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-            if(EquipSystem.Instance.equippedItem != null)
-            {
-                EquipSystem.Instance.equippedItem.transform.localRotation = Quaternion.Euler(20f + xRotation, -20f, -10f);
-            }
         }
 
     }

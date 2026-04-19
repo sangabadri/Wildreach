@@ -19,12 +19,15 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     private void Awake()
     {
-        canvas = InventorySystem.Instance.canvas;
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
 
     }
 
+    private void Start()
+    {
+        canvas = InventorySystem.Instance.canvas;
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {

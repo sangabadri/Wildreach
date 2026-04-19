@@ -32,15 +32,15 @@ public class PlayerState : MonoBehaviour
         {
             Instance = this;
         }
+
+        currentHealth = maxHealth;
+        currentCalories = maxCalories;
+        currentHydration = maxHydration;
     }
 
 
     private void Start()
     {
-        currentHealth = maxHealth;
-        currentCalories = maxCalories;
-        currentHydration = maxHydration;
-
         lastPosition = player.transform.position;
         StartCoroutine(DecreaseHydration());
 

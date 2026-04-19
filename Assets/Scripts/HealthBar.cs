@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour
     private float maxHealth;
     private float currentHealth;
 
-    private void Start()
+    private void Awake()
     {
         slider = GetComponent<Slider>();
     }

@@ -10,7 +10,7 @@ public class CaloriesBar : MonoBehaviour
     private float maxCalories;
     private float currentCalories;
 
-    private void Start()
+    private void Awake()
     {
         slider = GetComponent<Slider>();
     }

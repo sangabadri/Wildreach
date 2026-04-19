@@ -14,6 +14,7 @@ public class SelectionManager : MonoBehaviour
 
     public GameObject centreDot;
     public GameObject centreHand;
+    public bool handIsActive = false;
 
     private void Awake()
     {
@@ -25,9 +26,8 @@ public class SelectionManager : MonoBehaviour
         {
             Instance = this;
         }
-    }
-    private void Start()
-    {
+
+
         interaction_text = interaction_Info_UI.GetComponent<Text>();
     }
 
@@ -50,11 +50,13 @@ public class SelectionManager : MonoBehaviour
                 {
                     centreDot.SetActive(false);
                     centreHand.SetActive(true);
+                    handIsActive = true;
                 }
                 else
                 {
                     centreDot.SetActive(true);
                     centreHand.SetActive(false);
+                    handIsActive = false;
                 }
             }
             else
@@ -65,6 +67,7 @@ public class SelectionManager : MonoBehaviour
 
                 centreDot.SetActive(true);
                 centreHand.SetActive(false);
+                handIsActive = false;
             }
         }
         else
@@ -75,6 +78,7 @@ public class SelectionManager : MonoBehaviour
 
             centreDot.SetActive(true);
             centreHand.SetActive(false);
+            handIsActive = false;
         }
     }
 

@@ -40,7 +40,7 @@ public class TrashSlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
     private GameObject itemToBeDeleted;
     private GameObject itemToBeDeletedParent;
 
-    private void Start()
+    private void Awake()
     {
         trash = transform.Find("Trash").GetComponent<Image>();
 
@@ -59,8 +59,7 @@ public class TrashSlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
 
         slider.onValueChanged.AddListener(UpdateSlider);
 
-        text.text = "1";
-        slider.value = 1;
+        ReserSlider();
         slider.minValue = 1;
 
     }
@@ -85,7 +84,7 @@ public class TrashSlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
     private void CancelDeletion()
     {
         trash.sprite = trashClosed;
-        text.text = "1";
+        ReserSlider();
         trashAlertUI.SetActive(false);
     }
 
@@ -103,7 +102,7 @@ public class TrashSlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
             slot.SetItemCount(slot.GetItemCount() - (int)slider.value);
         }
         CraftingSystem.Instance.RefreshNeededItems();
-        text.text = "1";
+        ReserSlider();
         trashAlertUI.SetActive(false);
     }
 
@@ -128,6 +127,12 @@ public class TrashSlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
     void UpdateSlider(float value)
     {
         text.text = ((int)slider.value).ToString();
+    }
+
+    void ReserSlider()
+    {
+        text.text = "1";
+        slider.value = 1;
     }
 
 }

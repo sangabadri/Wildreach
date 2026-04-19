@@ -53,19 +53,6 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         itemInfoPanel_ItemEffectsStamina = itemInfoPanel.transform.Find("ItemEffects").Find("Stamina").GetComponent<Text>();
         itemInfoPanel_ItemEffectsHydration = itemInfoPanel.transform.Find("ItemEffects").Find("Hydration").GetComponent<Text>();
 
-        if (isConsumable)
-        {
-            itemInfoPanel_ItemEffectsHealth.text = "Health Effect: " + ((int)healthEffect);
-            itemInfoPanel_ItemEffectsStamina.text = "Calories Effect: " + ((int)caloriesEffect);
-            itemInfoPanel_ItemEffectsHydration.text = "Hydration Effect: " + ((int)hydrationEffect);
-        }
-        else
-        {
-            itemInfoPanel_ItemEffectsHealth.text = "Not Consumable";
-            itemInfoPanel_ItemEffectsStamina.gameObject.SetActive(false);
-            itemInfoPanel_ItemEffectsHydration.gameObject.SetActive(false);
-        }
-
         consumableAlertUI = InventorySystem.Instance.canvas.transform.Find("ConsumableAlert").gameObject;
 
         YesBTN = consumableAlertUI.transform.Find("YesBTN").GetComponent<Button>();
@@ -98,6 +85,18 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         itemInfoPanel_ItemName.text = itemName;
         itemInfoPanel_ItemDescription.text = itemDesription;
         itemInfoPanel_ItemFunctionality.text = itemFunctionality;
+        if (isConsumable)
+        {
+            itemInfoPanel_ItemEffectsHealth.text = "Health Effect: " + ((int)healthEffect);
+            itemInfoPanel_ItemEffectsStamina.text = "Calories Effect: " + ((int)caloriesEffect);
+            itemInfoPanel_ItemEffectsHydration.text = "Hydration Effect: " + ((int)hydrationEffect);
+        }
+        else
+        {
+            itemInfoPanel_ItemEffectsHealth.text = "Not Consumable";
+            itemInfoPanel_ItemEffectsStamina.gameObject.SetActive(false);
+            itemInfoPanel_ItemEffectsHydration.gameObject.SetActive(false);
+        }
         itemInfoPanel.SetActive(true);
     }
 
@@ -141,6 +140,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             }
             CraftingSystem.Instance.RefreshNeededItems();
             text.text = "1";
+            slider.value = 1;
             consumableAlertUI.SetActive(false);
         }
     }

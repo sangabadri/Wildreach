@@ -81,7 +81,7 @@ public class EquipSystem : MonoBehaviour
             quickSlot.SetQuickSlotIndexColor(Color.white);
             InventoryItem item = quickSlot.transform.GetChild(0).GetComponent<InventoryItem>();
             item.SetIsEquipped(true);
-            equippedItem = Instantiate(Resources.Load<GameObject>("Models/" + item.itemName), new Vector3(1.7f, 0.3f, 2f), Quaternion.Euler(20f, -20f, -10f));
+            equippedItem = Instantiate(Resources.Load<GameObject>("Models/" + item.itemName), new Vector3(1.7f, 1f, 2f), Quaternion.Euler(10f, -10f, -20f));
             equippedItem.transform.SetParent(weaponHolder.transform, false);
         }
     }

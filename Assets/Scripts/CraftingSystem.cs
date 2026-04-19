@@ -31,14 +31,14 @@ public class CraftingSystem : MonoBehaviour
         {
             Instance = this;
         }
+
+        toolsBTN = craftingScreenUI.transform.Find("ToolsButton").GetComponent<Button>();
+        toolsBTN.onClick.AddListener(delegate { OpenToolsCategory(); });
     }
     private void Start()
     {
         isOpen = false;
         isToolsOpen = false;
-
-        toolsBTN = craftingScreenUI.transform.Find("ToolsButton").GetComponent<Button>();
-        toolsBTN.onClick.AddListener(delegate { OpenToolsCategory(); });
 
         FillSlotList();
         MapButtons();

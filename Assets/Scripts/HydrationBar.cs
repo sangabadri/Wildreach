@@ -11,7 +11,7 @@ public class HydrationBar : MonoBehaviour
     private float maxHydration;
     private float currentHydration;
 
-    private void Start()
+    private void Awake()
     {
         slider = GetComponent<Slider>();
 

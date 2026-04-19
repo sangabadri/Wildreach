@@ -21,7 +21,7 @@ public class AI_Movement : MonoBehaviour
 
     private bool isWalking;
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
 

@@ -20,7 +20,7 @@ public class QuickSlot : MonoBehaviour, IDropHandler
         return null;
     }
 
-    private void Start()
+    private void Awake()
     {
         background = transform.Find("Background").gameObject;
         quickSlotIndex = transform.Find("Image/QuickSlotIndex").GetComponent<Text>();
