@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded;
 
+    public Transform spwanPoint;
+
     // Update is called once per frame
     private void Update()
     {
@@ -47,5 +49,19 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+
+        Ray ray = new Ray(groundCheck.position, Vector3.down);
+        RaycastHit hit;
+        if (!Physics.Raycast(ray, out hit))
+        {
+            StartCoroutine(Respawn());
+        }
+    }
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(3f);
+        transform.position = spwanPoint.position;
     }
 }
