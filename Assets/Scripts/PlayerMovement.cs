@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform spwanPoint;
 
+    bool alive = true;
+
     // Update is called once per frame
     private void Update()
     {
@@ -53,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
         Ray ray = new Ray(groundCheck.position, Vector3.down);
         RaycastHit hit;
-        if (!Physics.Raycast(ray, out hit))
+        if (!Physics.Raycast(ray, out hit) && alive)
         {
             StartCoroutine(Respawn());
         }
@@ -61,7 +63,9 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Respawn()
     {
+        alive = false;
         yield return new WaitForSeconds(3f);
         transform.position = spwanPoint.position;
+        alive = true;
     }
 }
