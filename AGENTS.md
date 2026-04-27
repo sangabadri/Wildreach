@@ -1,8 +1,8 @@
 <!-- UNITY CODE ASSIST INSTRUCTIONS START -->
 - Project name: Wildreach
-- Unity version: Unity 6000.4.0f1
+- Unity version: Unity 6000.3.14f1
 - Active game object:
-  - Name: Player
-  - Tag: Player
-  - Layer: Default
+  - Name: Canvas
+  - Tag: Untagged
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
