@@ -2,7 +2,7 @@
 - Project name: Wildreach
 - Unity version: Unity 6000.3.14f1
 - Active game object:
-  - Name: Canvas
+  - Name: Axe
   - Tag: Untagged
-  - Layer: UI
+  - Layer: Equipable
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
