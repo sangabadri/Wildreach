@@ -62,7 +62,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     public void OnEndDrag(PointerEventData eventData)
     {
 
-        if (transform.parent == canvas.transform)
+        if (transform.parent == canvas.transform || transform.parent == itemBeingDraggedParent.transform)
         {
             transform.SetParent(startParent);
             transform.SetSiblingIndex(0);
