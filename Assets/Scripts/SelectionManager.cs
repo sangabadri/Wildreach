@@ -94,6 +94,6 @@ public class SelectionManager : MonoBehaviour
     {
         centreDot.SetActive(true);
         centreHand.SetActive(true);
-        interaction_Info_UI.SetActive(true);
+        interaction_Info_UI.SetActive(false);
     }
 }

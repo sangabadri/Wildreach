@@ -33,7 +33,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
         GameObject draggedItemParent = DragDrop.itemBeingDraggedParent.gameObject;
         draggedItem.transform.SetParent(draggedItemParent.transform);
         draggedItem.transform.SetSiblingIndex(0);
-        if (!Item() && draggedItemParent.CompareTag("QuickSlot"))
+        if (!Item() && draggedItemParent.CompareTag("QuickSlot") && !draggedItemParent.GetComponent<QuickSlot>().GetIsEquiped())
         {
             EquipSystem.Instance.UnMapItemList(draggedItemParent);
             draggedItem.GetComponent<InventoryItem>().SetIsInQuickSlot(false);

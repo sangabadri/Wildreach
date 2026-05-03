@@ -6,6 +6,7 @@ public class QuickSlot : MonoBehaviour, IDropHandler
 {
     private GameObject background;
     private Text quickSlotIndex;
+    private int index;
     private bool isFull = false;
     private bool isEquiped = false;
 
@@ -36,11 +37,19 @@ public class QuickSlot : MonoBehaviour, IDropHandler
         draggedItem.transform.SetSiblingIndex(0);
         if (!Item() && draggedItemParent.CompareTag("QuickSlot"))
         {
+            bool equipped = draggedItemParent.GetComponent<QuickSlot>().GetIsEquiped();
+            if (equipped)
+            {
+                EquipSystem.Instance.UnequipItem();
+            }
             EquipSystem.Instance.UnMapItemList(draggedItemParent);
             draggedItem.transform.SetParent(transform);
             draggedItem.transform.SetSiblingIndex(0);
             EquipSystem.Instance.MapItemList(gameObject, draggedItem.GetComponent<InventoryItem>().itemName);
-
+            if (equipped)
+            {
+                EquipSystem.Instance.EquipItem(index);
+            }
         }
         else if (!Item() && draggedItemParent.CompareTag("ItemSlot"))
         {
@@ -82,6 +91,12 @@ public class QuickSlot : MonoBehaviour, IDropHandler
     public void SetBackgroundActive(bool active)
     {
         background.SetActive(active);
+    }
+
+    public void SetIndex(int index)
+    {
+        this.index = index;
+        quickSlotIndex.text = (index + 1).ToString();
     }
 
 }

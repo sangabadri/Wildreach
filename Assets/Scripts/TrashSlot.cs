@@ -109,7 +109,7 @@ public class TrashSlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
     public void OnPointerEnter(PointerEventData eventData)
     {
 
-        if (draggedItem != null && draggedItem.GetComponent<InventoryItem>().isTrashable == true)
+        if (draggedItem != null && draggedItem.GetComponent<InventoryItem>().isTrashable == true && draggedItem.GetComponent<InventoryItem>().GetIsInQuickSlot() == false)
         {
             trash.sprite = trashOpened;
         }

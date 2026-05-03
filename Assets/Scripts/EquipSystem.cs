@@ -65,7 +65,7 @@ public class EquipSystem : MonoBehaviour
         }
     }
 
-    private void EquipItem(int index)
+    public void EquipItem(int index)
     {
         int prevEquippedSlot = equippedSlot;
         UnequipItem();
@@ -86,7 +86,7 @@ public class EquipSystem : MonoBehaviour
         }
     }
 
-    private void UnequipItem()
+    public void UnequipItem()
     {
         if (equippedSlot != -1)
         {
@@ -123,6 +123,7 @@ public class EquipSystem : MonoBehaviour
                 MapItemList(slot, slot.transform.GetChild(0).GetComponent<InventoryItem>().itemName);
             }
             else itemList[i] = null;
+            slotList[i].GetComponent<QuickSlot>().SetIndex(i);
             i++;
         }
     }
@@ -133,6 +134,7 @@ public class EquipSystem : MonoBehaviour
         quickSlot.SetIsFull(false);
         quickSlot.SetIsEquiped(false);
         quickSlot.SetBackgroundActive(true);
+        quickSlot.SetQuickSlotIndexColor(Color.gray);
         InventoryItem item = quickSlot.transform.GetChild(0).GetComponent<InventoryItem>();
         item.SetIsInQuickSlot(false);
         int index = slotList.IndexOf(slot);
