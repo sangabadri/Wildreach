@@ -90,10 +90,14 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             itemInfoPanel_ItemEffectsHealth.text = "Health Effect: " + ((int)healthEffect);
             itemInfoPanel_ItemEffectsStamina.text = "Calories Effect: " + ((int)caloriesEffect);
             itemInfoPanel_ItemEffectsHydration.text = "Hydration Effect: " + ((int)hydrationEffect);
+            itemInfoPanel_ItemEffectsHealth.gameObject.SetActive(true);
+            itemInfoPanel_ItemEffectsStamina.gameObject.SetActive(true);
+            itemInfoPanel_ItemEffectsHydration.gameObject.SetActive(true);
         }
         else
         {
             itemInfoPanel_ItemEffectsHealth.text = "Not Consumable";
+            itemInfoPanel_ItemEffectsHealth.gameObject.SetActive(true);
             itemInfoPanel_ItemEffectsStamina.gameObject.SetActive(false);
             itemInfoPanel_ItemEffectsHydration.gameObject.SetActive(false);
         }
@@ -149,20 +153,17 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private void ConsumingFunction(int count)
     {
         itemInfoPanel.SetActive(false);
-        for(int i=0; i<count; i++)
-        {
-            HealthEffectCalculation();
-            CaloriesEffectCalculation();
-            HydrationEffectCalculation();
-        }
+        HealthEffectCalculation(count);
+        CaloriesEffectCalculation(count);
+        HydrationEffectCalculation(count);
     }
 
-    private void HealthEffectCalculation()
+    private void HealthEffectCalculation(int count)
     {
         float currentHealth = PlayerState.Instance.GetHealth();
         float maxHealth = PlayerState.Instance.GetMaxHealth();
 
-        if(currentHealth + healthEffect > maxHealth)
+        if(currentHealth + healthEffect * count > maxHealth)
         {
             PlayerState.Instance.SetHealth(maxHealth);
         }
@@ -172,12 +173,12 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
-    private void CaloriesEffectCalculation()
+    private void CaloriesEffectCalculation(int count)
     {
         float currentCalories = PlayerState.Instance.GetCalories();
         float maxCalories = PlayerState.Instance.GetMaxCalories();
 
-        if (currentCalories + caloriesEffect > maxCalories)
+        if (currentCalories + caloriesEffect * count > maxCalories)
         {
             PlayerState.Instance.SetCalories(maxCalories);
         }
@@ -187,12 +188,12 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
-    private void HydrationEffectCalculation()
+    private void HydrationEffectCalculation(int count)
     {
         float currentHydration = PlayerState.Instance.GetHydration();
         float maxHydration = PlayerState.Instance.GetMaxHydration();
 
-        if (currentHydration + hydrationEffect > maxHydration)
+        if (currentHydration + hydrationEffect * count > maxHydration)
         {
             PlayerState.Instance.SetHydration(maxHydration);
         }
